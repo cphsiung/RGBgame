@@ -1,3 +1,4 @@
+// Select pixelCanvas
 const canvas = document.getElementById("pixelCanvas");
 // Select color input
 let colorInput = document.getElementById("colorPicker");
@@ -14,6 +15,7 @@ size.addEventListener("submit", function(event){
   changeColor();
 });
 
+// When "Choose for me" is clicked, randomly create canvas and choose color
 const idk = document.getElementById("idk")
 idk.addEventListener("click",function(event){
   event.preventDefault();
@@ -23,16 +25,17 @@ idk.addEventListener("click",function(event){
   changeColor();
 })
 
-function makeGrid(h, w){
-// Your code goes here!
-  for(let i = 1; i <= h; i++){
+// Create canvas based on user input
+function makeGrid(height, width){
+  for(let i = 1; i <= height; i++){
     const row = canvas.insertRow(-1);
-    for(let j = 1; j <= w; j++){
+    for(let j = 1; j <= width; j++){
       const cell = row.insertCell(-1);
     }
   }
 }
 
+// Reset canvas
 function reset(){
   var tr = document.getElementsByTagName("tr");
   for(let i = tr.length - 1; i >= 0; i--){
@@ -41,6 +44,7 @@ function reset(){
   colorInput = document.getElementById("colorPicker");
 }
 
+// Change paint color based on user selection
 function changeColor(){
   const td = document.getElementsByTagName("td");
   for(let i = 0; i < td.length; i++){
@@ -54,12 +58,15 @@ function changeColor(){
   }
 }
 
+// Randomly choose a canvas and color
 function random(){
+  // Height and width max set to 30
   ranHInput = Math.floor(Math.random() * 30) + 1;
   ranWInput = Math.floor(Math.random() * 30) + 1;
   colorInput.value = ranColor();
 }
 
+// Randomly choose a color number with hex format
 function ranColor(){
   const letters = "0123456789ABCDEF"
   let color = "#";
